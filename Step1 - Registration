@@ -1,0 +1,9 @@
+"use strict";
+
+$(document).ready(function (data) {
+
+        $.post("http://challenge.code2040.org/api/register", {
+        token: "92ef6ea80d5182d0ec1a6d77cff44a88",
+        github: "https://github.com/omarichatman/code2040_Step1"
+    });
+});
