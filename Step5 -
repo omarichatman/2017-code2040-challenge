@@ -1,0 +1,40 @@
+"use strict";
+
+$(document).ready(function (data) {
+
+    var finalDate = ' ';
+    var secPlus = function (datestamp, interval) {
+        
+        var testStamp = moment(datestamp); //.toISOString(); // I used the javascript library moment.js. It really made things simple.
+        //console.log(testStamp + " -testStamp");
+
+        testStamp.add(interval, 'seconds'); // Add the interval to the datestamp
+        var isoStamp = testStamp.toISOString(); //Convert it to IOS format
+        var noMilliSec = isoStamp.replace('.000', ''); //Get rid of the milliseconds
+
+        return(noMilliSec);
+    }
+
+
+    $.post("http://challenge.code2040.org/api/dating", {
+        token: "92ef6ea80d5182d0ec1a6d77cff44a88"
+    },  function(res){
+        //console.log(res);
+
+        var datestamp = res.datestamp;
+        //console.log(datestamp + " -datestamp");
+
+        var interval = res.interval; //interval
+        //console.log(interval + " -interval");
+
+        finalDate = secPlus(datestamp, interval);
+        //console.log(finalDate);
+
+    }).then(function() {
+
+    $.post("http://challenge.code2040.org/api/dating/validate", {
+        token: "92ef6ea80d5182d0ec1a6d77cff44a88",
+        datestamp: finalDate
+            });
+        });
+});
