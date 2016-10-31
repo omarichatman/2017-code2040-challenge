@@ -1,0 +1,29 @@
+"use strict";
+
+$(document).ready(function (data) {
+    var needleLoc = '';
+   
+    var findNeedle = function(str, strArray) {
+
+        var index = strArray.indexOf(str, 0); // I began learning a few different javaScript keywords and their uses.
+        console.log(index);
+        return index;
+    };
+    
+    $.post("http://challenge.code2040.org/api/haystack", {
+        token: "92ef6ea80d5182d0ec1a6d77cff44a88"     
+    }, function(res){  
+        
+        var needle = res.needle;
+    
+        var haystack = res.haystack;
+
+         needleLoc = findNeedle(needle, haystack);
+    }).then(function() {     
+        
+    $.post("http://challenge.code2040.org/api/haystack/validate", {
+        token: "92ef6ea80d5182d0ec1a6d77cff44a88",
+        needle: needleLoc
+        }); 
+    });
+ });
