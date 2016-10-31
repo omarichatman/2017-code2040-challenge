@@ -1,0 +1,39 @@
+"use strict";
+
+$(document).ready(function (data) {
+    var wordArray = []; // initializing variable to their types. 
+    var prefixWord;
+    
+    var noPrefix = function(prefix, strArray) {
+ 
+    for(var i = 0; i < strArray.length; i++) // To check every single word in the arrray object and check for the prefix
+        {
+        var sepArray = strArray[i];
+        var goodWord = sepArray.startsWith(prefix);
+       
+        if(goodWord == false) // If the prefix is no there then add that word to the array I have created above
+            {
+                wordArray.push(sepArray);
+            }
+        }
+        return wordArray;
+    };
+    
+    $.post("http://challenge.code2040.org/api/prefix", {
+        token: "92ef6ea80d5182d0ec1a6d77cff44a88"     
+    }, function(res){  
+        //console.log(res);
+        var prefix = res.prefix;
+        //console.log(prefix);
+        var array = res.array;
+        //console.log(array);
+        prefixWord = noPrefix(prefix, array);
+        //console.log(prefixWord);
+    }).then(function() {     
+        
+    $.post("http://challenge.code2040.org/api/prefix/validate", {
+        token: "92ef6ea80d5182d0ec1a6d77cff44a88",
+        array: prefixWord
+        }); 
+    });
+ });
