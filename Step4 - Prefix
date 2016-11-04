@@ -11,7 +11,7 @@ $(document).ready(function (data) {
         var sepArray = strArray[i];
         var goodWord = sepArray.startsWith(prefix);
        
-        if(goodWord == false) // If the prefix is no there then add that word to the array I have created above
+        if(goodWord == false) // If the prefix is not there then add that word to the array I have created at the top
             {
                 wordArray.push(sepArray);
             }
