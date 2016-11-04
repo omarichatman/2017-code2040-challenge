@@ -2,7 +2,7 @@
 
 $(document).ready(function (data) {
 
-        $.post("http://challenge.code2040.org/api/register", {
+        $.post("http://challenge.code2040.org/api/register", { // jQuery keyword to send an HTTP Request through a POST method 
         token: "92ef6ea80d5182d0ec1a6d77cff44a88",
         github: "https://github.com/omarichatman/code2040_Step1"
     });
