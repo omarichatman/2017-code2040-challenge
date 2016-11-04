@@ -3,14 +3,14 @@
 $(document).ready(function (data) {
     var strWord = ''; 
     var reverseString = function(str) {
-        var strArr = str.split('').reverse().join('');
+        var strArr = str.split('').reverse().join(''); // Reverse the string str
         return strArr;
     };
     
     $.post("http://challenge.code2040.org/api/reverse", {
         token: "92ef6ea80d5182d0ec1a6d77cff44a88"       
-    }, function(res){ // I learned how to take the input that the post was sending me back and access that. 
-        strWord = reverseString(res);
+    }, function(res){ //Take the reuslt of the post and access that. 
+        strWord = reverseString(res); 
     }).then(function() {
         $.post("http://challenge.code2040.org/api/reverse/validate", {
             token: "92ef6ea80d5182d0ec1a6d77cff44a88",
